@@ -2,7 +2,7 @@ import flet as ft
 import requests
 
 API_BASE = "http://127.0.0.1:8000"
-
+#define the login view (holding what should be in the login view)
 def login_view(page):
     username = ft.TextField(label="Username", width=300)
     password = ft.TextField(label="Password", password=True, width=300, can_reveal_password=True)
@@ -18,11 +18,11 @@ def login_view(page):
         on_click=lambda e: None,
         disabled=True  # Initially disabled
     )
-
+#this tells the button that nothing was in the input fields
     def check_fields(e):
         login_button.disabled = not (username.value and password.value)
         page.update()
-
+#handles the event of redirecting when the login button is clicked
     def handle_login(e):
         status.value = ""
         loading.value = "Please wait..."
@@ -60,7 +60,7 @@ def login_view(page):
     username.on_change = check_fields
     password.on_change = check_fields
     login_button.on_click = handle_login
-
+    #holds the route of the page and how the layout of the page should be.
     return ft.View(
         "/login",
         controls=[
